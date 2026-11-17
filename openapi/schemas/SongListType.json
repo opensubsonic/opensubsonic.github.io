@@ -1,0 +1,16 @@
+{
+    "type": "string",
+    "description": "The list type. The values and their meanings are the same as in `getAlbumList2`, applied to songs.",
+    "enum": [
+        "random",
+        "newest",
+        "highest",
+        "frequent",
+        "recent",
+        "alphabeticalByName",
+        "alphabeticalByArtist",
+        "starred",
+        "byYear",
+        "byGenre"
+    ]
+}

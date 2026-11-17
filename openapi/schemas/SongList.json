@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "description": "Song-level version of `albumList2`.",
+    "externalDocs": {
+        "description": "songList",
+        "url": "https://opensubsonic.github.io/docs/responses/songlist/"
+    },
+    "properties": {
+        "song": {
+            "type": "array",
+            "items": {
+                "$ref": "./Child.json"
+            },
+            "description": "List of songs"
+        }
+    }
+}

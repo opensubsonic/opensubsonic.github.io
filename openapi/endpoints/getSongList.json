@@ -1,0 +1,159 @@
+{
+    "get": {
+        "summary": "Returns a list of random, newest, highest rated etc. songs.",
+        "description": "OpenSubsonic extension name `songLists` (As returned by `getOpenSubsonicExtensions`). Song-level version of `getAlbumList2`: the same parameters and list types, returning `Child` entries instead of albums.",
+        "operationId": "getSongList",
+        "tags": [
+            "Lists"
+        ],
+        "parameters": [
+            {
+                "name": "type",
+                "in": "query",
+                "required": true,
+                "schema": {
+                    "$ref": "../schemas/SongListType.json"
+                }
+            },
+            {
+                "name": "size",
+                "in": "query",
+                "description": "The number of songs to return. Max 500.",
+                "required": false,
+                "schema": {
+                    "type": "integer",
+                    "default": 10,
+                    "minimum": 1,
+                    "maximum": 500
+                }
+            },
+            {
+                "name": "offset",
+                "in": "query",
+                "description": "The list offset. Useful if you for example want to page through the list of newest songs.",
+                "required": false,
+                "schema": {
+                    "type": "integer",
+                    "default": 0,
+                    "minimum": 0
+                }
+            },
+            {
+                "name": "fromYear",
+                "in": "query",
+                "description": "Required if `type=='byYear'`. The first year in the range. If `fromYear` > `toYear` a reverse chronological list is returned.",
+                "required": false,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "name": "toYear",
+                "in": "query",
+                "description": "Required if `type=='byYear'`. The last year in the range.",
+                "required": false,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "name": "genre",
+                "in": "query",
+                "description": "Required if `type=='byGenre'`. The name of the genre, e.g., “Rock”.",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "Successful or failed response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "./getSongList/GetSongListResponse.json"
+                        }
+                    }
+                }
+            }
+        },
+        "externalDocs": {
+            "description": "getSongList",
+            "url": "https://opensubsonic.github.io/docs/endpoints/getsonglist/"
+        }
+    },
+    "post": {
+        "summary": "Returns a list of random, newest, highest rated etc. songs.",
+        "description": "OpenSubsonic extension name `songLists` (As returned by `getOpenSubsonicExtensions`). Song-level version of `getAlbumList2`: the same parameters and list types, returning `Child` entries instead of albums.\n\nRequires OpenSubsonic extension name `formPost` (As returned by `getOpenSubsonicExtensions`)",
+        "operationId": "postGetSongList",
+        "tags": [
+            "Lists"
+        ],
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/x-www-form-urlencoded": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "$ref": "../schemas/SongListType.json"
+                            },
+                            "size": {
+                                "type": "integer",
+                                "description": "The number of songs to return. Max 500.",
+                                "default": 10,
+                                "minimum": 1,
+                                "maximum": 500
+                            },
+                            "offset": {
+                                "type": "integer",
+                                "description": "The list offset. Useful if you for example want to page through the list of newest songs.",
+                                "default": 0,
+                                "minimum": 0
+                            },
+                            "fromYear": {
+                                "type": "integer",
+                                "description": "Required if `type=='byYear'`. The first year in the range. If `fromYear` > `toYear` a reverse chronological list is returned."
+                            },
+                            "toYear": {
+                                "type": "integer",
+                                "description": "Required if `type=='byYear'`. The last year in the range."
+                            },
+                            "genre": {
+                                "type": "string",
+                                "description": "Required if `type=='byGenre'`. The name of the genre, e.g., “Rock”."
+                            }
+                        },
+                        "required": [
+                            "type"
+                        ]
+                    }
+                }
+            }
+        },
+        "parameters": [
+
+        ],
+        "responses": {
+            "200": {
+                "description": "Successful or failed response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "./getSongList/GetSongListResponse.json"
+                        }
+                    }
+                }
+            },
+            "405": {
+                "$ref": "../responses/HTTPFormPostNotSupported.json"
+            }
+        },
+        "externalDocs": {
+            "description": "getSongList",
+            "url": "https://opensubsonic.github.io/docs/endpoints/getsonglist/"
+        }
+    }
+}
