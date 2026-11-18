@@ -67,6 +67,23 @@ A [`subsonic-response`](../../responses/subsonic-response) element with a nested
     }
 }
 {{< /tab >}}
+{{< tab header="OpenSubsonic XML" lang="xml">}}
+<subsonic-response status="ok" version="1.16.1" type="AwesomeServerName" serverVersion="0.1.3 (tag)" openSubsonic="true">
+  <openSubsonicExtensions name="template">
+    <versions>1</versions>
+    <versions>2</versions>
+  </openSubsonicExtensions>
+  <openSubsonicExtensions name="transcodeOffset">
+    <versions>1</versions>
+  </openSubsonicExtensions>
+  <openSubsonicExtensions name="sonicSimilarity">
+    <versions>1</versions>
+  </openSubsonicExtensions>
+  <openSubsonicExtensions name="topSongsByArtistId">
+    <versions>1</versions>
+  </openSubsonicExtensions>
+</subsonic-response>
+{{< /tab >}}
 {{< tab header="Subsonic" >}}
 Does not exist.
 {{< /tab >}}

@@ -13,7 +13,7 @@ The OpenSubsonic API has the following goals:
 
 1. **Open and Collaborative**: The specification is maintained through a collaborative effort, inviting contributions from developers across the Subsonic ecosystem. See the [Proposals for Changes to the OpenSubsonic API Specification](https://github.com/opensubsonic/opensubsonic.github.io/discussions/categories/api-requests) for details on how to contribute.
 2. **Secure**: All extensions must be proven to be secure, ensuring a safe experience for users and developers.
-3. **Backwards-Compatible**: Compatibility with the existing Subsonic API is maintained, allowing clients and servers that utilize the OpenSubsonic API to work with those that don't, and vice versa.
+3. **Backwards-Compatible**: Compatibility with the existing Subsonic API is maintained, allowing clients and servers that utilize the OpenSubsonic API to work with those that don't, and vice versa. This includes keeping the XML responses of the original Subsonic endpoints available, since XML remains the default format of the existing API.
 4. **Optional Implementation**: Each part of the OpenSubsonic API is designed to be optional, enabling servers and clients to choose which parts they want to implement or consume.
 
 ## Key Features
