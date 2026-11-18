@@ -276,6 +276,9 @@
         "/rest/getSong": {
             "$ref": "./endpoints/getSong.json"
         },
+        "/rest/getSongList": {
+            "$ref": "./endpoints/getSongList.json"
+        },
         "/rest/getSongsByGenre": {
             "$ref": "./endpoints/getSongsByGenre.json"
         },
@@ -841,6 +844,18 @@
             },
             "GetSongResponse": {
                 "$ref": "./endpoints/getSong/GetSongResponse.json"
+            },
+            "SongListType": {
+                "$ref": "./schemas/SongListType.json"
+            },
+            "SongList": {
+                "$ref": "./schemas/SongList.json"
+            },
+            "GetSongListSuccessResponse": {
+                "$ref": "./endpoints/getSongList/GetSongListSuccessResponse.json"
+            },
+            "GetSongListResponse": {
+                "$ref": "./endpoints/getSongList/GetSongListResponse.json"
             },
             "GetSongsByGenreSuccessResponse": {
                 "$ref": "./endpoints/getSongsByGenre/GetSongsByGenreSuccessResponse.json"

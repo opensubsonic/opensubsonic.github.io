@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "description": "A subsonic-response element with a nested songList element on success.",
+    "properties": {
+        "subsonic-response": {
+            "oneOf": [
+                {
+                    "$ref": "./GetSongListSuccessResponse.json"
+                },
+                {
+                    "$ref": "../../schemas/SubsonicResponse/SubsonicFailureResponse.json"
+                }
+            ]
+        }
+    },
+    "externalDocs": {
+        "description": "GetSongListResponse",
+        "url": "https://opensubsonic.github.io/docs/endpoints/getsonglist/"
+    }
+}
