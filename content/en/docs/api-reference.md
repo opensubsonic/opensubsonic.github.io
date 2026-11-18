@@ -30,6 +30,27 @@ Please note that all methods take the following parameters:
 
 Remember to [URL encode](http://www.w3schools.com/tags/ref_urlencode.asp) the request parameters. All methods (except those that return binary data) returns XML documents conforming to the [subsonic-rest-api.xsd](../subsonic-versions) schema. The XML documents are encoded with UTF-8.
 
+## XML responses
+
+The original Subsonic API used the same name for an array property in JSON and for the repeated
+element in XML. OpenSubsonic additions keep that convention: an array property is serialized as one
+XML element per item, using the property name as-is.
+
+For example, `openSubsonicExtensions` is an array, so the XML response repeats
+`<openSubsonicExtensions>` for every extension:
+
+```xml
+<openSubsonicExtensions name="template">
+  <versions>1</versions>
+  <versions>2</versions>
+</openSubsonicExtensions>
+<openSubsonicExtensions name="transcodeOffset">
+  <versions>1</versions>
+</openSubsonicExtensions>
+```
+
+The name is not singularized. This also applies to nested arrays such as `versions`.
+
 ## POST support
 
 OpenSubsonic add official support for `application/x-www-form-urlencoded` POST to pass the argument.
