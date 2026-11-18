@@ -10,7 +10,7 @@ description: >
 
 The OpenSubsonic API allows anyone to build their own programs using a compatible server, whether they're on the web, the desktop, or on mobile devices. All the OpenSubsonic-compatible apps (clients and servers) are built using the OpenSubsonic API.
 
-The OpenSubsonic API allows you to call methods that respond in [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) style XML or JSON. Since most clients now only rely on JSON, this documentation only shows the JSON answers in the documentation.
+The OpenSubsonic API allows you to call methods that respond in [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) style XML or JSON. Since most clients now only rely on JSON, this documentation only shows the JSON answers in the documentation. OpenSubsonic servers must support JSON, XML support is optional, see [Response formats](./api-reference#response-formats).
 
 This project is built upon the original [Subsonic API](https://www.subsonic.org/pages/api.jsp).
 

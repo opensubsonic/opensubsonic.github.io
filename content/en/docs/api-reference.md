@@ -22,15 +22,23 @@ Please note that all methods take the following parameters:
 | `apiKey`  | **Yes**\*\* |**Yes** |         | [OS] An API key used for authentication                                                                                                                                                                                                                            |
 | `v`       | **Yes**     |        |         | The protocol version implemented by the client, i.e., the version of the [subsonic-rest-api.xsd](../subsonic-versions) schema used (see below).                                                                                                                    |
 | `c`       | **Yes**     |        |         | A unique string identifying the client application.                                                                                                                                                                                                                |
-| `f`       |   No        |        | xml     | Request data to be returned in this format. Supported values are "xml", "json" (since [1.4.0](../subsonic-versions)) and "jsonp" (since [1.6.0](../subsonic-versions)). If using jsonp, specify name of javascript callback function using a `callback` parameter. |
+| `f`       |   No        |        | xml     | Request data to be returned in this format. Supported values are "xml", "json" (since [1.4.0](../subsonic-versions)) and "jsonp" (since [1.6.0](../subsonic-versions)). If using jsonp, specify name of javascript callback function using a `callback` parameter. OpenSubsonic servers **must** support `json`, support for `xml` is optional, see [Response formats](#response-formats). |
 
 \*) Either `p` or both `t` and `s` must be specified.
 
 \*\*) If `apiKey` is specified, then none of `p`, `t`, `s`, nor `u` can be specified.
 
-Remember to [URL encode](http://www.w3schools.com/tags/ref_urlencode.asp) the request parameters. All methods (except those that return binary data) returns XML documents conforming to the [subsonic-rest-api.xsd](../subsonic-versions) schema. The XML documents are encoded with UTF-8.
+Remember to [URL encode](http://www.w3schools.com/tags/ref_urlencode.asp) the request parameters.
 
-## XML responses
+## Response formats
+
+The original Subsonic API defaults to XML. Its XML documents are encoded with UTF-8 and conform to the [subsonic-rest-api.xsd](../subsonic-versions) schema. That schema only covers the original Subsonic API up to version 1.16.1, it does not describe any OpenSubsonic additions.
+
+OpenSubsonic servers **must** support the JSON format (`f=json`) on all endpoints. The examples in this documentation use JSON for that reason.
+
+XML support is optional. Servers that support it should keep answering the legacy Subsonic endpoints in XML, so that clients which only understand XML, i.e. clients that don't utilize the OpenSubsonic API, continue to work. Endpoints and parameters introduced by OpenSubsonic are not part of the original Subsonic API, so servers may answer those in JSON only.
+
+### XML responses
 
 The original Subsonic API used the same name for an array property in JSON and for the repeated
 element in XML. OpenSubsonic additions keep that convention: an array property is serialized as one
@@ -50,6 +58,8 @@ For example, `openSubsonicExtensions` is an array, so the XML response repeats
 ```
 
 The name is not singularized. This also applies to nested arrays such as `versions`.
+
+Servers that return OpenSubsonic additions in XML should follow this convention. Because unknown elements can break some non-OpenSubsonic XML clients, servers may omit the OpenSubsonic additions from their XML responses, or only from the responses to such clients.
 
 ## POST support
 

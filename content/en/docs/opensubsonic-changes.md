@@ -33,6 +33,7 @@ To achieve this servers supporting OpenSubsonic have to support a very minimal s
 1. Expand the [`subsonic-response`](../responses/subsonic-response) with the new mandatory fields.
 2. Implement the [`getOpenSubsonicExtensions`](../endpoints/getopensubsonicextensions) endpoint. This **must** be accessible without any authentication parameters
 3. Return error **41** ([`API Reference`](../api-reference#error-handling)) if they do not support Subsonic [1.13.0](../subsonic-versions) new authentication system while advertising a version > [1.13.0](../subsonic-versions)
+4. Support the JSON response format (`f=json`) on all endpoints. XML responses are optional, see [`Response formats`](../api-reference#response-formats)
 
 ## List of changes
 
