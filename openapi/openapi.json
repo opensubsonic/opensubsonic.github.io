@@ -294,6 +294,9 @@
         "/rest/getUsers": {
             "$ref": "./endpoints/getUsers.json"
         },
+        "/rest/getWaveform": {
+            "$ref": "./endpoints/getWaveform.json"
+        },
         "/rest/getVideoInfo": {
             "$ref": "./endpoints/getVideoInfo.json"
         },
@@ -1012,6 +1015,15 @@
             },
             "GetSonicSimilarTracksResponse": {
                 "$ref": "./endpoints/getSonicSimilarTracks/GetSonicSimilarTracksResponse.json"
+            },
+            "Waveform": {
+                "$ref": "./schemas/Waveform.json"
+            },
+            "GetWaveformSuccessResponse": {
+                "$ref": "./endpoints/getWaveform/GetWaveformSuccessResponse.json"
+            },
+            "GetWaveformResponse": {
+                "$ref": "./endpoints/getWaveform/GetWaveformResponse.json"
             }
         }
     }

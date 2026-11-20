@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "description": "The loudness envelope of a song.",
+    "externalDocs": {
+        "description": "waveform",
+        "url": "https://opensubsonic.github.io/docs/responses/waveform/"
+    },
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "The ID of the song."
+        },
+        "duration": {
+            "type": "number",
+            "description": "The duration of the song in seconds."
+        },
+        "interval": {
+            "type": "number",
+            "description": "The length of audio, in milliseconds, that each value of `levels` covers: 100 for the base resolution, or `100 × N / samples` after reduction, where N is the number of base values. Value i starts at about `i × interval` ms."
+        },
+        "samples": {
+            "type": "integer",
+            "description": "The number of values in `levels`. This is lower than the requested number of samples only when the request asks for more values than the base resolution holds."
+        },
+        "levels": {
+            "type": "array",
+            "description": "One RMS level per slice of the song, in playback order, in dBFS rounded to 2 decimal places, from -120 (silence) to 0 (full scale). After reduction, each value is the highest base value of its slice.",
+            "items": {
+                "type": "number",
+                "minimum": -120,
+                "maximum": 0
+            }
+        }
+    },
+    "required": [
+        "id",
+        "duration",
+        "interval",
+        "samples",
+        "levels"
+    ]
+}

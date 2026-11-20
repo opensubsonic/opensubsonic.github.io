@@ -58,6 +58,12 @@ A [`subsonic-response`](../../responses/subsonic-response) element with a nested
                 ]
             },
             {
+                "name": "songWaveform",
+                "versions": [
+                    1
+                ]
+            },
+            {
                 "name": "topSongsByArtistId",
                 "versions": [
                     1
