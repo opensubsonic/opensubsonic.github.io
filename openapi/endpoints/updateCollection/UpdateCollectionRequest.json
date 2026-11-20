@@ -1,6 +1,6 @@
 {
     "type": "object",
-    "description": "Request payload for updating a collection. Only the fields supplied in the request payload will have an effect. Only one of `add`, `move`, and `remove` can be non-empty in a single request.",
+    "description": "Request payload for updating a collection. Only the fields supplied in the request payload will have an effect. Only one of `setItems`, addItems`, `moveItems`, and `removeItems` can be non-empty in a single request.",
     "properties": {
         "collectionId": {
             "description": "The collection ID.",
@@ -18,13 +18,20 @@
             "description": "`true` if the collection should be visible to all users, `false` otherwise.",
             "type": "boolean"
         },
-        "add": {
+        "setItems": {
+            "description": "Replace the list of items with the ones provided. Each item must occur at most once.",
+            "type": "array",
+            "items": {
+                "$ref": "../../schemas/CollectionItemId.json"
+            }
+        },
+        "addItems": {
             "$ref": "../../schemas/AddItemsToCollection.json"
         },
-        "move":  {
+        "moveItems":  {
             "$ref": "../../schemas/MoveRange.json"
         },
-        "remove": {
+        "removeItems": {
             "description": "Remove the items at the specified positions from the collection.",
             "type": "array",
             "items": {

@@ -26,10 +26,29 @@ The request payload should be provided in the body as a JSON object, as specifie
   "comment": "this is a new comment"
 }
 {{< /tab >}}
-{{< tab header="Add" lang="json">}}
+{{< tab header="Set items" lang="json">}}
 {
   "collectionId": "23785995",
-  "add": {
+  "setItems": [
+    {
+      "type": "song",
+      "id": "300000060"
+    },
+    {
+      "type": "album",
+      "id": "200000021"
+    },
+    {
+      "type": "genre",
+      "id": "vaporwave"
+    }
+  ]
+}
+{{< /tab >}}
+{{< tab header="Add items" lang="json">}}
+{
+  "collectionId": "23785995",
+  "addItems": {
     "items": [
       {
         "type": "album",
@@ -40,20 +59,20 @@ The request payload should be provided in the body as a JSON object, as specifie
   }
 }
 {{< /tab >}}
-{{< tab header="Move" lang="json">}}
+{{< tab header="Move items" lang="json">}}
 {
   "collectionId": "23785995",
-  "move": {
+  "moveItems": {
     "fromStart": 0,
     "fromEnd": 5,
     "to": 20
   }
 }
 {{< /tab >}}
-{{< tab header="Remove" lang="json">}}
+{{< tab header="Remove items" lang="json">}}
 {
   "collectionId": "23785995",
-  "remove": [0, 1, 2, 6]
+  "removeItems": [0, 1, 2, 6]
 }
 {{< /tab >}}
 {{< /tabpane >}}

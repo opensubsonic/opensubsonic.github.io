@@ -21,10 +21,29 @@ Only the fields supplied in the request payload will have an effect on a collect
   "comment": "this is a new comment"
 }
 {{< /tab >}}
-{{< tab header="Add" lang="json">}}
+{{< tab header="Set items" lang="json">}}
 {
   "collectionId": "23785995",
-  "add": {
+  "setItems": [
+    {
+      "type": "song",
+      "id": "300000060"
+    },
+    {
+      "type": "album",
+      "id": "200000021"
+    },
+    {
+      "type": "genre",
+      "id": "vaporwave"
+    }
+  ]
+}
+{{< /tab >}}
+{{< tab header="Add items" lang="json">}}
+{
+  "collectionId": "23785995",
+  "addItems": {
     "items": [
       {
         "type": "album",
@@ -35,20 +54,20 @@ Only the fields supplied in the request payload will have an effect on a collect
   }
 }
 {{< /tab >}}
-{{< tab header="Move" lang="json">}}
+{{< tab header="Move items" lang="json">}}
 {
   "collectionId": "23785995",
-  "move": {
+  "moveItems": {
     "fromStart": 0,
     "fromEnd": 5,
     "to": 20
   }
 }
 {{< /tab >}}
-{{< tab header="Remove" lang="json">}}
+{{< tab header="Remove items" lang="json">}}
 {
   "collectionId": "23785995",
-  "remove": [0, 1, 2, 6]
+  "removeItems": [0, 1, 2, 6]
 }
 {{< /tab >}}
 {{< /tabpane >}}
@@ -59,8 +78,9 @@ Only the fields supplied in the request payload will have an effect on a collect
 | `name` | string | No | **Yes** | The human-readable name of the collection. Cannot be an empty string. |
 | `comment` | string | No | **Yes** | The collection comment. |
 | `public` | boolean | No | **Yes** | `true` if the collection should be visible to all users, `false` otherwise. |
-| `add` | [AddItemsToCollection](../payloads/additemstocollection) | No | **Yes** | Add items to the collection. |
-| `move` | [MoveRange](../payloads/moverange) | No | **Yes** | Move items from the original position to another in the collection. |
-| `remove` | Array of integer | No | **Yes** | Remove the items at the specified positions from the collection. |
+| `setItems` | [CollectionItemID[]](../payloads/collectionitemid) | No | **Yes** | Replace the list of items with the ones provided. Each item must occur at most once. |
+| `addItems` | [AddItemsToCollection](../payloads/additemstocollection) | No | **Yes** | Add items to the collection. |
+| `moveItems` | [MoveRange](../payloads/moverange) | No | **Yes** | Move items from the original position to another in the collection. |
+| `removeItesm` | Array of integer | No | **Yes** | Remove the items at the specified positions from the collection. |
 
-Only one of `add`, `move`, and `remove` can be non-empty in a single request.
+Only one of `setItems`, `addItems`, `moveItems`, and `removeItems` can be non-empty in a single request.
