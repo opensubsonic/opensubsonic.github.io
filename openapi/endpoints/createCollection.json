@@ -29,11 +29,8 @@
                     }
                 }
             },
-            "400": {
-                "description": "Request is malformed or doesn't follow the schema."
-            },
             "404": {
-                "description": "Some items don't exist, or extension not supported."
+                "description": "Extension not supported."
             },
             "405": {
                 "$ref": "../responses/HTTPFormPostNotSupported.json"

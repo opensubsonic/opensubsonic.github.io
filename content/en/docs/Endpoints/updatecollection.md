@@ -65,7 +65,6 @@ The request payload should be provided in the body as a JSON object, as specifie
 ### Result
 
 An empty [`subsonic-response`](../../responses/subsonic-response) element on success.
-In case of an error, a standard HTTP error code is returned with a descriptive message.
 
 {{< tabpane persist=false >}}
 {{< tab header="**Example**:" disabled=true />}}
