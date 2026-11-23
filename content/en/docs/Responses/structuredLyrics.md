@@ -48,7 +48,7 @@ Does not exist.
 
 ### Version 2 (enhanced — word/syllable-level with kind)
 
-When `enhanced=true` is passed to [`getLyricsBySongId`](../../endpoints/getlyricsbysongid), the response includes additional fields: `kind` to classify lyric tracks, optional exact `line.end` timing, `cueLine` arrays with word/syllable-level timing, cue `byteStart` / `byteEnd` offsets into `cueLine.value`, and optional `agents` arrays for reusable agent attribution.
+When `enhanced=true` is passed to [`getLyricsBySongId`](../../endpoints/getlyricsbysongid), the response includes additional fields: `kind` to classify lyric tracks, optional `type` to describe the intended use of a translation track, optional exact `line.end` timing, `cueLine` arrays with word/syllable-level timing, cue `byteStart` / `byteEnd` offsets into `cueLine.value`, and optional `agents` arrays for reusable agent attribution.
 
 Each `structuredLyrics` entry is self-contained. Clients should treat tracks with different `kind` values, including `main`, as independent layers rather than assuming 1:1 line or cue alignment between them. Agent identity is also scoped to a single `structuredLyrics` entry; `agents[].id` values have no meaning outside that entry. When a cue uses `byteStart` / `byteEnd`, those offsets are always relative to the final `cueLine.value` string in the same entry.
 
@@ -121,6 +121,29 @@ Each `structuredLyrics` entry is self-contained. Clients should treat tracks wit
 {{< /tab >}}
 {{< tab header="Subsonic"  >}}
 Does not exist.
+{{< /tab >}}
+{{< /tabpane >}}
+
+#### Translation type
+
+In an enhanced response, only entries with `kind="translation"` can include `type`. The field applies to the entire track. Servers **must** preserve a supported type explicitly supplied by the source, even when a replacement translation is incomplete, and **must** omit the field when the source provides no supported type. For example, a server can map the `type` attribute on a TTML `<translation>` element to this field.
+
+The example below shows a translation that can be selected by the user to replace the original lyrics on screen. The client displays the original lyrics by default. If a client encounters an unrecognized type, it can treat the track as an ordinary subtitle translation.
+
+{{< tabpane persist=false >}}
+{{< tab header="OpenSubsonic JSON" lang="json">}}
+{
+  "kind": "translation",
+  "type": "replacement",
+  "lang": "zh-Hans",
+  "synced": true,
+  "line": [{ "start": 14954, "end": 21119, "value": "今天我寒夜里看雪飘过" }]
+}
+{{< /tab >}}
+{{< tab header="OpenSubsonic XML" lang="xml">}}
+<structuredLyrics kind="translation" type="replacement" lang="zh-Hans" synced="true">
+  <line start="14954" end="21119">今天我寒夜里看雪飘过</line>
+</structuredLyrics>
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -321,6 +344,7 @@ Does not exist.
 | `displayTitle`  | `string`                             | No      | **Yes** | The title to display. This could be the song title (localized), or any other value                                                                                                                                                                                                                                                              |
 | `offset`        | `number`                             | No      | **Yes** | The offset to apply to all lyric timing, in milliseconds, including both `line.start` and `line.end`. Positive means lyrics appear sooner, negative means later. If not included, the offset **must** be assumed to be 0                                                                                                                          |
 | `kind`          | `string`                             | No      | **Yes** | The primary lyric-layer classification for this `structuredLyrics` entry. One of: `main` (primary vocals for this entry, default if omitted), `translation` (a translation of another lyric layer into another language), `pronunciation` (a phonetic/romanized rendering, e.g. romaji for Japanese, pinyin for Chinese). Tracks are independent across `kind` values; clients should not assume 1:1 line or cue alignment between entries. Only returned when `enhanced=true`. Added in [`songLyrics`](../../extensions/songlyrics) version 2 |
+| `type`          | `string`                             | No      | **Yes** | Indicates how the source intends this translation track to be used. `subtitle` can be displayed alongside the original lyrics. `replacement` can be selected by the user to replace the original lyrics on screen. Only returned for `kind="translation"` when `enhanced=true`. If omitted, clients treat the track as an ordinary subtitle translation. |
 | `agents`        | Array of [`agent`](../agent)         | No      | **Yes** | Reusable per-track attribution metadata for `cueLine` entries. When present, **must** contain at least one entry, and each `agents[].id` **must** be unique within this `structuredLyrics` entry. `agents` are optional for simple unattributed single-layer lyrics. When a `structuredLyrics` entry represents multiple vocal agents/layers, it **must** include `agents`; a single-agent attributed/default entry may also include `agents`, and if it does, exactly one agent **must** use `role: "main"`. `agents` should not be emitted without `cueLine` data |
 | `cueLine`       | Array of [`cueLine`](../cueline)     | No      | **Yes** | Word/syllable-level timing data. Each cueLine corresponds to a `line` by its `index` field. Every cueLine **must** include `value`, and every nested cue **must** include `byteStart` / `byteEnd` offsets into that exact string. If `agents` is present, every cueLine in the entry **must** include `agentId`; if `agents` is absent, cueLines **must not** include `agentId`. Only returned when `enhanced=true` and `synced` is `true`. Added in [`songLyrics`](../../extensions/songlyrics) version 2 |
 

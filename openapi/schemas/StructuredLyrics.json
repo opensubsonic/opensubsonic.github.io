@@ -42,6 +42,14 @@
                 "pronunciation"
             ]
         },
+        "type": {
+            "type": "string",
+            "description": "Source-declared intended use of this translation track. Only returned for kind=translation when enhanced=true. Servers send subtitle for a translation intended to be displayed alongside the original, or replacement for a translation that can be selected by the user to replace the original lyrics on screen. If the source has no supported type, omit this property. Clients treat an omitted or unrecognized value as an ordinary subtitle translation.",
+            "enum": [
+                "subtitle",
+                "replacement"
+            ]
+        },
         "agents": {
             "type": "array",
             "description": "Reusable per-track attribution metadata for cueLine entries. When present, agents must contain at least one entry, and each agents[].id must be unique within this structuredLyrics entry. Agents are optional for simple unattributed single-layer lyrics. When a structuredLyrics entry represents multiple vocal agents or layers, it must include agents; a single-agent attributed or default entry may also include agents, and if it does, exactly one agent must use role main. Agents should not be emitted without cueLine data",

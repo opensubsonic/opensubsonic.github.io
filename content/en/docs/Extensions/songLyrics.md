@@ -27,6 +27,7 @@ Adds:
 
 - `enhanced` query parameter on [`getLyricsBySongId`](../../endpoints/getlyricsbysongid) to opt-in to enhanced lyrics data
 - `kind` field on [`structuredLyrics`](../../responses/structuredlyrics) to classify independent lyric layers (`main`, `translation`, `pronunciation`)
+- `type` field on [`structuredLyrics`](../../responses/structuredlyrics) to distinguish `subtitle` and `replacement` translation tracks
 - [`agent`](../../responses/agent) objects within an optional `agents` array on [`structuredLyrics`](../../responses/structuredlyrics) for reusable agent attribution metadata
 - [`cueLine`](../../responses/cueline) array on [`structuredLyrics`](../../responses/structuredlyrics) for word/syllable-level timing
 - `agentId` field on [`cueLine`](../../responses/cueline) to reference an [`agent`](../../responses/agent) in the same `structuredLyrics` entry
