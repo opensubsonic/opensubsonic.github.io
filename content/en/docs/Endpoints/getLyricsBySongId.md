@@ -123,7 +123,7 @@ Does not exist.
 
 #### Version 2 (`enhanced=true`)
 
-When `enhanced=true` is passed, the response includes `kind` to classify lyric tracks, optional exact `line.end` timing, [`cueLine`](../../responses/cueline) arrays with word/syllable-level timing, cue `byteStart` / `byteEnd` offsets into `cueLine.value`, optional per-entry [`agents`](../../responses/agent) metadata for agent attribution, and additional tracks such as translations and pronunciations.
+When `enhanced=true` is passed, the response includes `kind` to classify lyric tracks, optional exact `line.end` timing, [`cueLine`](../../responses/cueline) arrays with word/syllable-level timing, cue `byteStart` / `byteEnd` offsets into `cueLine.value`, optional per-entry [`agents`](../../responses/agent) metadata for agent attribution, and additional tracks such as translations and pronunciations. Translation tracks can include an optional [`type`](../../responses/structuredlyrics/#translation-type) to indicate whether the translation can be displayed alongside the original lyrics (`subtitle`) or selected by the user to replace the original lyrics on screen (`replacement`).
 
 {{% alert color="primary" %}} `http://your-server/rest/getLyricsBySongId.view?id=456&enhanced=true&u=demo&p=demo&v=1.13.0&c=AwesomeClientName&f=json` {{% /alert %}}
 
@@ -181,6 +181,7 @@ When `enhanced=true` is passed, the response includes `kind` to classify lyric t
         },
         {
           "kind": "translation",
+          "type": "subtitle",
           "lang": "eng",
           "synced": true,
           "line": [
@@ -250,7 +251,7 @@ When `enhanced=true` is passed, the response includes `kind` to classify lyric t
         <cue start="8400" end="9000" byteStart="11" byteEnd="22">달라졌어</cue>
       </cueLine>
     </structuredLyrics>
-    <structuredLyrics kind="translation" lang="eng" synced="true">
+    <structuredLyrics kind="translation" type="subtitle" lang="eng" synced="true">
       <line start="2747">The moment I opened my eyes</line>
       <line start="6214">Everything had changed</line>
     </structuredLyrics>
