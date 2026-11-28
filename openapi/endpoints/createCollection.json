@@ -1,0 +1,44 @@
+{
+    "post": {
+        "summary": "Creates a collection.",
+        "description": "Creates a collection.",
+        "operationId": "createCollection",
+        "tags": [
+            "Collections",
+            "Extension"
+        ],
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "./createCollection/CreateCollectionRequest.json"
+                    }
+                }
+            }
+        },
+        "parameters": [],
+        "responses": {
+            "200": {
+                "description": "Successful or failed response",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "./createCollection/CreateCollectionResponse.json"
+                        }
+                    }
+                }
+            },
+            "404": {
+                "description": "Extension not supported."
+            },
+            "405": {
+                "$ref": "../responses/HTTPFormPostNotSupported.json"
+            }
+        },
+        "externalDocs": {
+            "description": "createCollection",
+            "url": "https://opensubsonic.netlify.app/docs/endpoints/createcollection/"
+        }
+    }
+}
